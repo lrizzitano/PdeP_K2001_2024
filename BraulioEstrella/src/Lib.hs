@@ -29,7 +29,7 @@ torretaCurativa unPersonaje = modificarSuperPoderActivo (True) . modificarVida (
 
 desactivarSuperEnLasUltimas :: Personaje -> Personaje
 desactivarSuperEnLasUltimas unPersonaje
-    | estaEnLasUltimas unPersonaje = unPersonaje { superPoderActivo = False, cantidadDeVida = 0 }
+    | estaEnLasUltimas unPersonaje = modificarSuperPoderActivo False . modificarVida (* 0) $ unPersonaje
     | otherwise = unPersonaje
 
 modificarVida :: (Int -> Int) -> Personaje -> Personaje
