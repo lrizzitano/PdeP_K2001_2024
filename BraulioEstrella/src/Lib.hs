@@ -21,7 +21,7 @@ lluviaDeTuercas          _ unPersonaje = unPersonaje
 
 granadaDeEspinas :: Int -> SuperPoder
 granadaDeEspinas radio 
-    | radio > 3 = modificarNombre (++"Espina estuvo aqui").desactivarSuperEnLasUltimas
+    | radio > 3 = modificarNombre (++", Espina estuvo aqui").desactivarSuperEnLasUltimas
     | otherwise = bolaEspinosa
 
 torretaCurativa :: SuperPoder
