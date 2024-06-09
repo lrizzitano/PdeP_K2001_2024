@@ -6,3 +6,5 @@ siguiente numero = numero + 1
 
 suma :: Int -> Int -> Int
 suma unNumero otroNumero = unNumero + otroNumero
+
+prueba (x:xs) = (x:xs)
