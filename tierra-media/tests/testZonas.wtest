@@ -1,0 +1,41 @@
+import zonas.*
+import armas.*
+import habitantes.*
+
+describe "grupo de tests de zonas"{
+    
+    test "Gandalf full vida y con sus armas, puede atravesar Lebennin"{
+      gandalf.vida(100)
+      gandalf.armas(#{baculo, glamdring})
+      assert.that(lebennin.puedeRecorrer(gandalf))
+    }
+
+    test "Gandalf sin armas y con 11 de vida puede atravesar Lebennin"{
+      gandalf.vida(11)
+      gandalf.armas(#{})
+      assert.notThat(lebennin.puedeRecorrer(gandalf))
+    }
+
+    test "Gandalf sin armas y con 11 de vida puede atravesar Minas Tirith"{
+      gandalf.vida(11)
+      gandalf.armas(#{})
+      assert.notThat(minasTirith.puedeRecorrer(gandalf))
+    }
+
+    test "Gandalf full vida y con sus armas, puede atravesar el camino compuesto por Lebennin y Minas Tirith"{
+      gandalf.vida(100)
+      gandalf.armas(#{baculo, glamdring})
+      caminoDeGondor.origen(lebennin)
+      caminoDeGondor.destino(minasTirith)
+      assert.that(caminoDeGondor.puedeRecorrer(gandalf))
+    }
+
+    test "Gandalf full vida y con sus armas, atraviesa el camino compuesto por Lebennin y Minas Tirith"{
+      gandalf.vida(100)
+      gandalf.armas(#{baculo, glamdring})
+      caminoDeGondor.origen(lebennin)
+      caminoDeGondor.destino(minasTirith)
+      caminoDeGondor.recorrer(gandalf)
+      assert.equals(90, gandalf.vida())
+    }
+}

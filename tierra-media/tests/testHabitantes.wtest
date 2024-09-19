@@ -1,0 +1,44 @@
+import zonas.*
+import armas.*
+import habitantes.*
+
+describe "grupo de tests de gandalf" {
+
+  test "Poder de Gandalf con toda la vida y todas sus armas" {
+    gandalf.vida(100)
+    gandalf.armas(#{baculo, glamdring})
+    assert.equals(2800, gandalf.poder())
+  }
+
+  test "Poder de Gandalf sin armas y con 80 de vida"{
+    gandalf.vida(80)
+    gandalf.armas(#{})
+    assert.equals(1200, gandalf.poder())
+  }
+
+   test "Poder de Gandalf con 5 de vida y su báculo"{
+    gandalf.vida(5)
+    gandalf.armas(#{baculo})
+    assert.equals(2300, gandalf.poder())
+  }
+
+   test "Poder de Gandalf con 30 de vida, su báculo y su espada pero versión enana"{
+    const espadaEnana = new Espada (origen = origenEnano)
+    gandalf.vida(30)
+    gandalf.armas(#{baculo, espadaEnana})
+    assert.equals(1650, gandalf.poder())
+  }
+
+}
+
+describe "grupo de tests de Tom Bombadil"{
+    test "Tom puede atravesar Lebennin" {
+    assert.that(lebennin.puedeRecorrer(tomBombadil))
+  }
+
+  // No se como testear el cambio de estado de un objeto,
+  // menos de uno que no tiene estado...
+  test "Tom atraviesa el camino que pasa por Gondor antes mencionado" {
+    assert.that(caminoDeGondor.puedeRecorrer(tomBombadil))
+  }
+}
