@@ -10,14 +10,12 @@ class Espada {
 
 const glamdring = new Espada (origen = origenElfico)
 
-object origenElfico {
-    method multiplicadorDeOrigen() = 25
+class Origen{
+    const property multiplicadorDeOrigen
 }
 
-object origenEnano {
-  method multiplicadorDeOrigen() = 20 
-}
+const origenElfico = new Origen (multiplicadorDeOrigen = 25)
 
-object origenHumano {
-  method multiplicadorDeOrigen() = 15
-}
+const origenEnano = new Origen (multiplicadorDeOrigen = 20)
+
+const origenHumano = new Origen (multiplicadorDeOrigen = 15)
