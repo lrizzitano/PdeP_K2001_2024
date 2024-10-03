@@ -1,0 +1,36 @@
+@startuml
+class Rick {
+nivelDemencia
+acompañante
+--
+
+}
+
+class Morty {
+irDeAventuraCon(unRick)
+}
+
+class Summer {
+irDeAventuraCon(unRick)
+}
+
+class Beth {
+irDeAventuraCon(unRick)
+}
+
+object Jerry {
+irDeAventuraCon(unRick)
+}
+
+interface Acompañante {
+irDeAventuraCon(unRick)
+}
+
+Rick -> Acompañante
+Morty .up.|> Acompañante
+Summer .up.|> Acompañante
+Beth .up.|> Acompañante
+Jerry .up.|> Acompañante
+
+
+@enduml

@@ -1,0 +1,120 @@
+@startuml
+
+interface Arma {
+    poder()
+}
+
+class Espada {
+    multiplicadorDePoder
+    origen
+    --
+    poder()
+}
+
+class Origen {
+    valorDeOrigen
+}
+
+class Baculo {
+    poder()
+}
+
+class Daga {
+    poder()
+}
+
+class Arco {
+    tension
+    longitud
+    --
+    poder()
+}
+
+class Hacha {
+    largoDelMango
+    pesoDeLaHoja
+    --
+    poder()
+}
+
+class Guerrero {
+    vida
+    armas
+    items
+    --
+    poderDeArmas()
+    poder()
+}
+
+class Hobbit {
+    cantidadDeItems()
+    poder()
+}
+
+class Enano {
+    factorDePoder
+    --
+    poder()
+}
+
+class Elfo {
+    destrezaBase
+    destrezaPropia
+    --
+    poder()
+}
+
+class Humano {
+    limitadorDePoder
+    --
+    poder()
+}
+
+class Maiar {
+    factorDePoderBasico
+    factorDePoderBajoAmenaza
+    --
+    poder()
+}
+
+object tomBombadil {
+    poder()
+}
+
+object Gollum {
+    poder()
+}
+
+class Zona {
+    requerimiento
+    --
+    puedeSerRecorridoPor(grupoDeGuerreros)
+}
+
+class Camino {
+    zonasDelRecorrido
+    --
+    puedeSerRecorridoPor(grupoDeGuerreros)
+}
+
+Espada -d-> Origen
+Espada .d.|> Arma
+Baculo .d.|> Arma
+Daga .d.|> Arma
+Arco .d.|> Arma
+Hacha .d.|> Arma
+
+Guerrero -u->"      *" Arma
+Hobbit -u-|> Guerrero
+Enano -u-|> Guerrero
+Elfo -u-|> Guerrero
+Humano -u-|> Guerrero
+Maiar -u-|> Guerrero
+tomBombadil -u-|> Guerrero
+Gollum -u-|> Hobbit
+
+Zona .d.>"*" Guerrero
+Camino .d.>"*" Guerrero
+Camino -d->"*" Zona
+
+@enduml
