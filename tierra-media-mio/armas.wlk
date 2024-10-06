@@ -16,9 +16,10 @@ class Daga inherits Espada {
 }
 
 class Arco {
+    var property tension = 40
     const longitud
 
-    method poder() = tensionDeArcos.tension() * longitud / 10
+    method poder() = tension * longitud / 10
 }
 
 class Hacha {
@@ -30,10 +31,6 @@ class Hacha {
 
 class Origen{
     const property valorDeOrigen
-}
-
-object tensionDeArcos {
-    var property tension = 40
 }
 
 const origenElfico = new Origen (valorDeOrigen = 30)

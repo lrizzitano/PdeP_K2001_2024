@@ -13,6 +13,5 @@ const grupoTiene10Lembas = new RequerimientoDeItem (
 )
 
 const algunGuerreroCon1500DePoder = new RequerimientoDeGuerrero (
-  bloqueDeAtributoRequerido = {guerrero => guerrero.poder()}, 
-  cantidadRequerida = 1500
+  bloqueDeAtributoRequerido = {guerrero => guerrero.tieneSuficientePoder(1500)}
 )

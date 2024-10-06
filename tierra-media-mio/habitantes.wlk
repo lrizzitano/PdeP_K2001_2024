@@ -2,16 +2,26 @@ import armas.*
 
 class Guerrero {
   var property vida
-  var property armas
-  var property items
+  var property armas = []
+  var property items = []
 
   method poderDeArmas() = armas.sum({unArma => unArma.poder()})
+
   method poder()
+
+  method cantidadDe(itemRequerido) = items.count({item => item == itemRequerido})
+
+  method tieneSuficienteVida(cantidadDeVida) = vida >= cantidadDeVida
+
+  method tieneSuficientePoder(cantidadDePoder) = self.poder() >= cantidadDePoder
+
+  method tieneSuficienteArmas(cantidadDeArmas) = armas.size() >= cantidadDeArmas
+
+  method tieneSuficienteItems(cantidadDeItems) = items.size() >= cantidadDeItems
 }
 
 class Hobbit inherits Guerrero {
-  method cantidadDeItems() = items.size()
-  override method poder() = vida + self.poderDeArmas() + self.cantidadDeItems()
+  override method poder() = vida + self.poderDeArmas() + items.size()
 }
 
 class Enano inherits Guerrero {
@@ -21,9 +31,10 @@ class Enano inherits Guerrero {
 }
 
 class Elfo inherits Guerrero {
-  var property destrezaPropia
+  var property destrezaBase = 2
+  const destrezaPropia
 
-  override method poder() = vida + self.poderDeArmas() * (destrezaBaseDeElfos.destreza() + destrezaPropia)
+  override method poder() = vida + self.poderDeArmas() * (destrezaBase + destrezaPropia)
 }
 
 class Humano inherits Guerrero {
@@ -33,33 +44,35 @@ class Humano inherits Guerrero {
 }
 
 class Maiar inherits Guerrero {
-  var property factorDePoder = factorDePoderBasico
 
-  override method poder() = vida * factorDePoder.factor() + self.poderDeArmas() * 2
+  override method poder() =
+    if (vida >= 10){
+      self.calcularPoder(factorDePoderMaiarBasico)
+    } else {
+      self.calcularPoder(factorDePoderMaiarBajoAmenaza)
+    }
+
+  method calcularPoder(factorDePoder) = vida * factorDePoder.factor() + self.poderDeArmas() * 2
 }
 
-object factorDePoderBasico {
+object factorDePoderMaiarBasico {
   var property factor = 15
 }
 
-object factorDePoderBajoAmenaza {
+object factorDePoderMaiarBajoAmenaza {
   var property factor = 300
 }
 
-object destrezaBaseDeElfos {
-  var property destreza = 2
-}
-
-object tomBombadil inherits Guerrero (vida = 100, armas = [], items = []){
+object tomBombadil inherits Guerrero (vida = 100, items = ["chaqueta azul brillante", "botas amarillas", "pluma de ala de cisne"]){
   override method poder() = 10000000
 }
 
-object gollum inherits Hobbit (vida = 100, armas = [], items = []){
+object gollum inherits Hobbit (vida = 100){
   override method poder() = super() / 2 
 }
 
-const frodo = new Hobbit (vida = 50, armas = [espadaDeFrodo], items = [])
-const gimli = new Enano (vida = 75, armas = [hachaDeGimli, hachaDeGimli], items = [], factorDePoder = 3)
-const legolas = new Elfo (vida = 80, destrezaPropia = 1, armas = [arcoDeLegolas, espadaDeLegolas], items = [])
-const aragorn = new Humano (vida = 85, armas = [anduril, dagaDeAragorn], items = [], limitadorDePoder = 20)
-const gandalf = new Maiar (vida = 100, armas = [glamdring, baculoDeGandalf], items = [])
+const frodo = new Hobbit (vida = 50, armas = [espadaDeFrodo])
+const gimli = new Enano (vida = 75, armas = [hachaDeGimli, hachaDeGimli], factorDePoder = 3)
+const legolas = new Elfo (vida = 80, destrezaPropia = 1, armas = [arcoDeLegolas, espadaDeLegolas])
+const aragorn = new Humano (vida = 85, armas = [anduril, dagaDeAragorn], limitadorDePoder = 20)
+const gandalf = new Maiar (vida = 100, armas = [glamdring, baculoDeGandalf])

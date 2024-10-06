@@ -13,6 +13,5 @@ const grupoTiene3CapasElficas = new RequerimientoDeItem (
 )
 
 const algunGuerreroTieneArmas = new RequerimientoDeGuerrero (
-  bloqueDeAtributoRequerido = {guerrero => guerrero.armas().size()},
-  cantidadRequerida = 1
+  bloqueDeAtributoRequerido = {guerrero => guerrero.tieneSuficientesArmas(1)}
 )
