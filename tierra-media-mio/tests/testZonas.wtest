@@ -1,0 +1,14 @@
+import zonas.*
+import armas.*
+import habitantes.*
+import gondor.*
+import 
+
+describe "grupo de tests de zonas"{
+    
+    test "Un grupo no puede pasar por una zona por requerimiento de ítem."{
+      gandalf.vida(100)
+      gandalf.armas(#{baculo, glamdring})
+      assert.that(lebennin.puedeRecorrer(gandalf))
+    }
+}

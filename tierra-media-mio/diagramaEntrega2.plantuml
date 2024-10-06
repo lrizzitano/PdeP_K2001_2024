@@ -16,6 +16,8 @@ class Origen {
 }
 
 class Baculo {
+    poder
+    --
     poder()
 }
 
@@ -24,10 +26,15 @@ class Daga {
 }
 
 class Arco {
-    tension
     longitud
     --
     poder()
+}
+
+object tensionDeArcos {
+    tension
+    --
+    tension()
 }
 
 class Hacha {
@@ -58,10 +65,15 @@ class Enano {
 }
 
 class Elfo {
-    destrezaBase
     destrezaPropia
     --
     poder()
+}
+
+object destrezaBaseDeElfos {
+    destreza
+    --
+    destreza()
 }
 
 class Humano {
@@ -71,10 +83,25 @@ class Humano {
 }
 
 class Maiar {
-    factorDePoderBasico
-    factorDePoderBajoAmenaza
+    factorDePoder
     --
     poder()
+}
+
+interface factorDePoder {
+    factor()
+}
+
+object factorDePoderBasico {
+    factor
+    --
+    factor()
+}
+
+object factorDePoderBajoAmenaza {
+    factor
+    --
+    factor()
 }
 
 object tomBombadil {
@@ -97,19 +124,25 @@ class Camino {
     puedeSerRecorridoPor(grupoDeGuerreros)
 }
 
-Espada -d-> Origen
+Espada -u-> Origen
 Espada .d.|> Arma
-Baculo .d.|> Arma
+Daga -|> Espada
 Daga .d.|> Arma
+Baculo .d.|> Arma
+Arco .u.> tensionDeArcos
 Arco .d.|> Arma
 Hacha .d.|> Arma
 
-Guerrero -u->"      *" Arma
+Guerrero -u->"*" Arma
 Hobbit -u-|> Guerrero
 Enano -u-|> Guerrero
+Elfo .d.> destrezaBaseDeElfos
 Elfo -u-|> Guerrero
 Humano -u-|> Guerrero
 Maiar -u-|> Guerrero
+Maiar -d-> factorDePoder
+factorDePoderBasico .u.|> factorDePoder
+factorDePoderBajoAmenaza .u.|> factorDePoder
 tomBombadil -u-|> Guerrero
 Gollum -u-|> Hobbit
 
