@@ -18,6 +18,23 @@ class Guerrero {
   method tieneSuficienteArmas(cantidadDeArmas) = armas.size() >= cantidadDeArmas
 
   method tieneSuficienteItems(cantidadDeItems) = items.size() >= cantidadDeItems
+
+  method modificarVida(cantidadDeVida) {
+    vida = 0.max(vida + cantidadDeVida)
+  }
+
+  method modificarVidaPorcentual(porcentajeDeVida) {
+    vida = 0.max(vida + vida * porcentajeDeVida / 100)
+  }
+
+  method modificarItems(item, cantidad) {
+    if (cantidad < 0) cantidad.times(items.remove(item))
+    else cantidad.times(items.add(item))
+  }
+
+  method fueraDeCombate() = vida == 0
+
+  //TODO Agregar atributo de fuera de combate y ver como afecta a las zonas
 }
 
 class Hobbit inherits Guerrero {

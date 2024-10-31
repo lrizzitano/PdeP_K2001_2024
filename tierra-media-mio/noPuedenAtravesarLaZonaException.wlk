@@ -1,0 +1,1 @@
+class NoPuedePagarLaSalaException inherits Exception(message = "El grupo no puede atravesar la zona"){ }

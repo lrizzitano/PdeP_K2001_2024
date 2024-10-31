@@ -1,11 +1,13 @@
 import habitantes.*
 import zonas.*
 
-const belfalas = new Zona (requerimiento = sinRequerimiento)
+const lamedom = new Zona (requerimiento = sinRequerimiento, efecto = incrementarVida30Porciento)
 
-const lebennin = new Zona (requerimiento = algunGuerreroCon1500DePoder)
+const belfalas = new Zona (requerimiento = sinRequerimiento, efecto = ganarPanDeLembas)
 
-const minasTirith = new Zona (requerimiento = grupoTiene10Lembas)
+const lebennin = new Zona (requerimiento = algunGuerreroCon1500DePoder, efecto = sinEfecto)
+
+const minasTirith = new Zona (requerimiento = grupoTiene10Lembas, efecto = decrementarVida15Unidades)
 
 const grupoTiene10Lembas = new RequerimientoDeItem (
   itemRequerido = "lemba",
@@ -15,3 +17,9 @@ const grupoTiene10Lembas = new RequerimientoDeItem (
 const algunGuerreroCon1500DePoder = new RequerimientoDeGuerrero (
   bloqueDeAtributoRequerido = {guerrero => guerrero.tieneSuficientePoder(1500)}
 )
+
+const incrementarVida30Porciento = new EfectoDeVidaPorcentual (porcentajeDeVida = 30)
+
+const ganarPanDeLembas = new EfectoDeItem (item = "pan de lembas", cantidad = 1)
+
+const decrementarVida15Unidades = new EfectoDeVida (cantidadDeVida = 15)

@@ -1,0 +1,55 @@
+@startuml PdeP Libre
+
+abstract class Producto{
+    nombre
+    precioBase
+    --
+    precio()
+}
+
+class Mueble{
+    precio()
+}
+
+class Indumentaria{
+    esDeTemporadaActual
+    --
+    precio()
+}
+
+class Ganga{
+    precio()
+}
+
+class Cupon{
+    fueUsado
+    porcentajeDescuento
+}
+
+class Usuario{
+    nombre
+    puntos
+    nivel
+    productosEnCarrito
+}
+
+class Nivel{
+    puntosNecesarios
+    productosMaximosEnCarrito
+}
+
+object pdepLibre{
+    usuarios
+    productos
+}
+
+Mueble --|> Producto
+Indumentaria --|> Producto
+Ganga --|> Producto
+Usuario --> Nivel
+Usuario -->"*" Cupon
+Usuario -->"*" Producto
+pdepLibre -->"*" Usuario
+pdepLibre -->"*" Producto
+
+@enduml
