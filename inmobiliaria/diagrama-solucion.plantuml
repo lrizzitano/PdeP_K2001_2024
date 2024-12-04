@@ -1,0 +1,63 @@
+@startuml inmobiliaria
+
+object inmobiliaria{
+    empleados
+    empleadoConMejoresComisiones()
+    empleadoConMasOperaciones()
+    empleadoConMasReservas()
+    vanATenerProblemas(unEmpleado, otroEmpleado)
+}
+
+class empleado {
+    operaciones
+    reservar(inmueble, cliente)
+    concretar(operacion, cliente)
+}
+
+interface operacion {
+    comision()
+}
+
+class alquiler {
+    inmueble
+    mesesDeAlquiler
+    costo()
+}
+
+class venta {
+    inmueble
+    costo()
+}
+
+object pocentajeSobreVentas{
+    porcentaje
+}
+
+abstract class inmueble {
+    tamaño
+    ambientes
+    operacion
+    zona
+    --
+    valor()
+}
+
+class casa {
+    valor()
+}
+
+class ph {
+    valor()
+}
+
+class departamento {
+    valor()
+}
+
+class zona {
+    plusDePrecio
+}
+
+
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml intensamente
+
+object riley {
+    nivelDeFelicidad
+    emocionDominante
+    recuerdosDelDia
+    pensamientosCentrales
+    --
+    vivirEvento(descripcion)
+    asentar(recuerdo)
+    descansar()
+}
+
+class recuerdo {
+    fecha
+    descripcion
+    emocion
+}
+
+@enduml

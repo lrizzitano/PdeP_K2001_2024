@@ -1,0 +1,48 @@
+@startuml pedepfoni
+
+class linea {
+    numero
+    packsActivos
+    ultimosConsumos
+    categoria
+    --
+    limpiarPacks()
+    
+}
+
+abstract class consumo {
+    fecha
+    relizadoEntre(fechaInicio, fechaFin)
+    costo()
+}
+
+class consumoLlamada {
+    fecha
+    minutos
+    relizadoEntre(fechaInicio, fechaFin)
+    costo()
+}
+
+class consumoInternet {
+    fecha
+    megas
+    relizadoEntre(fechaInicio, fechaFin)
+    costo()
+}
+
+object pdepfoni {
+    precioPorMega
+    precioPorMinuto
+    precioFijoLlamadas
+}
+
+interface pack {
+    puedeSatisfacer(consumo)
+}
+
+interface categoria {
+    puedeRealizar(consumo)
+    realizar(consumo)
+}
+
+@enduml
