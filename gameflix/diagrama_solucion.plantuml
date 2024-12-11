@@ -1,0 +1,109 @@
+@startuml gameflix
+
+abstract class Juego {
+    nombre
+    precio
+    categoria
+    --
+    esDeCategoria(unaCategoria)
+    seLlama(unNombre)
+    precioMenorA(unPrecio)
+    afectarA(cliente, horasJugadas)
+}
+
+class JuegoViolento {
+    nombre
+    precio
+    categoria
+    --
+    afectarA(cliente, horasJugadas)
+}
+
+class MOBA {
+    nombre
+    precio
+    categoria
+    --
+    afectarA(cliente, horasJugadas)
+}
+
+class JuegoDeTerror {
+    nombre
+    precio
+    categoria
+    --
+    afectarA(cliente, horasJugadas)
+}
+
+class JuegoEstrategico {
+    nombre
+    precio
+    categoria
+    --
+    afectarA(cliente, horasJugadas)
+}
+
+class Cliente {
+    saldo
+    humor
+    suscripcion
+    --
+    jugar(juego, horas)
+
+}
+
+object gameflix {
+    juegos
+    clientes
+    --
+    filtrarJuegosPorCategoria(categoria)
+    buscarJuegoPorNombre(nombre)
+    recomendarJuego()
+    actualizarSuscripciones()
+}
+
+interface Suscripcion {
+    precio()
+    puedeJugar(juego)
+}
+
+object suscripcionPremium {
+    precio
+    puedeJugar(juego)
+}
+
+object suscripcionBase {
+    precio
+    puedeJugar(juego)
+}
+
+object suscripcionInfantil {
+    precio
+    puedeJugar(juego)
+}
+
+object suscripcionPrueba {
+    precio
+    puedeJugar(juego)
+}
+
+JuegoViolento -u-|> Juego
+MOBA -u-|> Juego
+JuegoDeTerror -u-|> Juego
+JuegoEstrategico -u-|> Juego
+
+Cliente -d-> Suscripcion
+
+gameflix --> "*" Juego
+gameflix -r-> "*" Cliente
+
+suscripcionPremium .u.|> Suscripcion
+suscripcionBase .u.|> Suscripcion
+suscripcionInfantil .u.|> Suscripcion
+suscripcionPrueba .u.|> Suscripcion
+
+Suscripcion .l.> Juego
+Cliente ..> Juego
+
+
+@enduml

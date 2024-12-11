@@ -1,0 +1,1 @@
+class NoTengoMasPlataException inherits Exception(message = "El cliente se quedo sin plata"){ }
