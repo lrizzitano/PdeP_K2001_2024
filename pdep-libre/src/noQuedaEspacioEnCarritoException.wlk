@@ -1,0 +1,1 @@
+class NoQuedaEspacioEnCarritoException inherits Exception(message = "No se pueden agregar mas productos al carrito"){ }

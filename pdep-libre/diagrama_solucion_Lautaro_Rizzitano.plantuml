@@ -1,55 +1,111 @@
-@startuml PdeP Libre
+@startuml PdePLibre
 
-abstract class Producto{
+abstract class Producto {
     nombre
     precioBase
     --
     precio()
 }
 
-class Mueble{
-    precio()
-}
-
-class Indumentaria{
-    esDeTemporadaActual
+class Mueble {
+    nombre
+    precioBase
     --
     precio()
 }
 
-class Ganga{
+class Indumentaria {
+    nombre
+    precioBase
+    esDeTemporada
+    --
     precio()
 }
 
-class Cupon{
-    fueUsado
-    porcentajeDescuento
-}
-
-class Usuario{
+class Ganga {
     nombre
-    puntos
-    nivel
-    productosEnCarrito
+    precioBase
+    --
+    precio()
 }
 
-class Nivel{
+class Usuario {
+    nombre
+    dinero 
+    puntos 
+    nivel 
+    cupones 
+    carrito 
+    --
+    precioDeCarrito()
+    precioDeCarritoConDescuento(unCupon)
+    cuponesDisponiles()
+    esUsuarioMoroso()
+    nivelCorrespondiente()
+    pagar(unPrecio)
+    sumarPuntos(unosPuntos)
+    reducirPuntos(unosPuntos)
+    agregarACarrito(unProducto)
+    comprarCarrito()
+    actualizarNivel()
+}
+
+interface Nivel {
+    puntosNecesarios()
+    tieneCarritoLimitado()
+    productosMaxEnCarrito()
+}
+
+object Bronce {
     puntosNecesarios
-    productosMaximosEnCarrito
+    tieneCarritoLimitado
+    productosMaxEnCarrito
 }
 
-object pdepLibre{
+object Plata {
+    puntosNecesarios
+    tieneCarritoLimitado
+    productosMaxEnCarrito
+}
+
+object Oro {
+    puntosNecesarios
+    tieneCarritoLimitado
+    productosMaxEnCarrito
+}
+
+class Cupon {
+    porcentajeDescuento
+    fueUsado
+    --
+    usarCupon()
+}
+
+object pdeplibre {
     usuarios
-    productos
+    productosMaxEnCarrito
+    --
+    usuariosMorosos()
+    reducirPuntosAMorosos()
+    eliminarCuponesUsados()
+    obtenerNombreDeOferta(producto)
+    actualizarNivelesDeUsuarios()
 }
 
-Mueble --|> Producto
-Indumentaria --|> Producto
-Ganga --|> Producto
-Usuario --> Nivel
-Usuario -->"*" Cupon
-Usuario -->"*" Producto
-pdepLibre -->"*" Usuario
-pdepLibre -->"*" Producto
+
+Mueble -u-|> Producto
+Indumentaria -u-|> Producto
+Ganga -u-|> Producto
+
+Usuario ..> Nivel
+Usuario ..> "*" Cupon
+Usuario .r.> "*" Producto
+
+Bronce .u.|> Nivel
+Plata .u.|> Nivel
+Oro .u.|> Nivel
+
+pdeplibre ..> "*" Usuario
+pdeplibre ..> "*" Producto
 
 @enduml
