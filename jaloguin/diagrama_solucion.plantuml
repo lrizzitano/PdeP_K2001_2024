@@ -1,0 +1,109 @@
+@startuml jaloguin
+
+class Nino {
+    actitud
+    elementos
+    caramelos
+    estado
+    --
+    susto()
+    tieneCaramelos(unaCantidad)
+    asustar(unAdulto)
+    comerCaramelos(unaCantidad)
+}
+
+interface Elemento {
+    susto()
+}
+
+class Maquillaje {
+    susto()
+}
+
+object sustoDeMaquillajes {
+    valor
+}
+
+class TrajeTierno {
+    susto()
+}
+
+class TrajeTerrorifico {
+    susto()
+}
+
+class Adulto {
+    cantidadDeIntentosDeSusto
+    tolerancia
+    esAsustadoPor(unNino)
+    darCaramelos(unNino)
+}
+
+class Abuelo {
+    esAsustadoPor(unNino)
+}
+
+class AdultoNecio {
+    esAsustadoPor(unNino)
+}
+
+class Legion {
+    ninos
+    --
+    liderDeLegion()
+    susto()
+    asustar(unAdulto)
+}
+
+class Barrio {
+    ninos
+    --
+    ninosConMasCaramelos()
+    elementosDeNinosConMuchosCaramelos()
+}
+
+interface Estado {
+    multiplicadorDeActitud()
+    estadoSiguiente()
+}
+
+object sano {
+    multiplicadorDeActitud()
+    estadoSiguiente()
+}
+
+object empachado {
+    multiplicadorDeActitud()
+    estadoSiguiente()
+}
+
+object enCama {
+    multiplicadorDeActitud()
+    estadoSiguiente()
+}
+
+Nino --> "*" Elemento
+Nino ..> Adulto
+Nino -r-> Estado
+
+sano .u.|> Estado
+empachado .u.|> Estado
+enCama .u.|> Estado
+
+Legion -> "*" Nino
+Legion ..> Adulto
+
+Adulto ..> Nino
+
+Abuelo -u-|> Adulto
+AdultoNecio -u-|> Adulto
+
+TrajeTierno .u.|> Elemento
+TrajeTerrorifico .u.|> Elemento
+
+Maquillaje .u.|> Elemento
+Maquillaje ..> sustoDeMaquillajes
+
+Barrio --> "*" Nino
+
+@enduml
