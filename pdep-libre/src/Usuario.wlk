@@ -4,7 +4,7 @@ import noQuedaEspacioEnCarritoException.*
 class Usuario {
     const nombre
     var dinero
-    var puntos = 0
+    var puntos
     var nivel = bronce
     var cupones = []
     const carrito = []

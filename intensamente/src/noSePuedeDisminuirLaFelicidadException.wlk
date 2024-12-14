@@ -1,0 +1,1 @@
+class NoSePuedeDisminuirLaFelicidad inherits Exception(message = "La felicidad no puede ser menor a 1") { }

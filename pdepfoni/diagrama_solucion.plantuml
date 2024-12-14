@@ -10,30 +10,21 @@ class linea {
     
 }
 
-abstract class consumo {
-    fecha
-    relizadoEntre(fechaInicio, fechaFin)
+Interface consumo {
+    fecha()
     costo()
 }
 
 class consumoLlamada {
     fecha
     minutos
-    relizadoEntre(fechaInicio, fechaFin)
     costo()
 }
 
 class consumoInternet {
     fecha
     megas
-    relizadoEntre(fechaInicio, fechaFin)
     costo()
-}
-
-object pdepfoni {
-    precioPorMega
-    precioPorMinuto
-    precioFijoLlamadas
 }
 
 interface pack {
@@ -43,6 +34,12 @@ interface pack {
 interface categoria {
     puedeRealizar(consumo)
     realizar(consumo)
+}
+
+object pdepfoni {
+    precioPorMega
+    precioPorMinuto
+    precioFijoLlamadas
 }
 
 @enduml

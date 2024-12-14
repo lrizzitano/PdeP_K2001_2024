@@ -6,15 +6,78 @@ object riley {
     recuerdosDelDia
     pensamientosCentrales
     --
-    vivirEvento(descripcion)
-    asentar(recuerdo)
-    descansar()
+    felicidadMayorA(unNumero)
+    felicidadResultante(unPorcentaje)
+    recuerdosRecientes()
+    pensamientosCentralesDificilesDeExplicar()
+    recuerdosConPalabraClave(palabraClave)
+    recuerdosNoCentralesNiNegados()
+    pensamientosCentralesEnLargoPlazo()
+    TodosLosRecuerdosConMismaEmocion ()
+    TodosLosRecuerdosConEmocion(unaEmocion)
+    aumentarFelicidad(unNumero)
+    disminuirFelicidadPorcentual(unPorcentaje)
+    vivirEvento(unaDescripcion)
+    asentar(unRecuerdo)
+    agregarPensamientoCentral(unRecuerdo)
+    dormir()
+    asentarRecuerdos(unosRecuerdos)
+    asentarRecuerdosSelectivo(palabraClave)
+    profundizar()
+    realizarControlHormonal()
+    tenerDesequilibrioHormonal()
+    realizarRestauracionCognitiva(unNumero)
+    liberarRecuerdos()
 }
 
-class recuerdo {
+class Recuerdo {
     fecha
     descripcion
     emocion
+    --
+    tieneDescripcionLarga()
+    esRecuerdoAlegre()
 }
+
+Interface Emocion {
+    niega(unRecuerdo)
+    asentar(unRecuerdo, riley)
+}
+
+object alegria {
+    niega(unRecuerdo)
+    asentar(unRecuerdo, riley)
+}
+
+object tristeza {
+    niega(unRecuerdo)
+    asentar(unRecuerdo, riley)
+}
+
+object desagrado {
+    niega(unRecuerdo)
+    asentar(unRecuerdo, riley)
+}
+
+object furia {
+    niega(unRecuerdo)
+    asentar(unRecuerdo, riley)
+}
+
+object temor {
+    niega(unRecuerdo)
+    asentar(unRecuerdo, riley)
+}
+
+riley --> Emocion
+riley -r-> "*" Recuerdo
+
+Recuerdo --> Emocion
+
+alegria -u-|> Emocion
+tristeza -u-|> Emocion
+desagrado -u-|> Emocion
+furia -u-|> Emocion
+temor -u-|> Emocion
 
 @enduml
